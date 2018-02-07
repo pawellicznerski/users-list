@@ -18,9 +18,10 @@ export default class Table extends Component {
     const data=     fetch('https://jsonplaceholder.typicode.com/posts/users').then(resp => resp.json())
           .then(data => {
             if(data.length!==0){
+              console.log(data);
               console.log("som danych");
             } else if (data.length===0){
-              console.log("som danych");
+              console.log("nie ma danych");
             }
           });
   //   return (
