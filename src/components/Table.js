@@ -15,7 +15,7 @@ export default class Table extends Component {
   }
 
   _renderTable() {
-    const data=     fetch('https://jsonplaceholder.typicode.com/posts/users').then(resp => resp.json())
+    const data=     fetch('https://jsonplaceholder.typicode.com/users').then(resp => resp.json())
           .then(data => {
             if(data.length!==0){
               console.log(data);
