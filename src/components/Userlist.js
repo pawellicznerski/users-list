@@ -17,7 +17,7 @@ export default class Userlist extends Component {
           if(data.length!==0){
             // console.log(data);
             // const dataObj = {...data};
-            // console.log(dataObj);
+            console.log(data[0].email);
 
             // console.log("selectedData",selectedData);
             this.setState({
@@ -29,10 +29,19 @@ export default class Userlist extends Component {
         }
       );//end of then
   }//end of component did
+
+updateData(newData){
+  const data= this.state.data?this.state.data:[];
+  data.push(newData);
+  this.setState({
+    data:data,
+  })
+}
+
   render(){
     return (
       <div>
-        <Toolbar data={this.state.data}></Toolbar>
+        <Toolbar data={this.state.data} updateData={this.updateData.bind(this)}></Toolbar>
         <Table data={this.state.data}></Table>
       </div>
     )

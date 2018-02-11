@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import _ from 'lodash';
 
 export default class Toolbar extends Component {
   constructor(props){
@@ -6,12 +7,12 @@ export default class Toolbar extends Component {
     this.state={
       showForm:false,
       name:'',
-      email:''
-      warning:''
+      email:'',
+      warning:'',
     }
   }
   showComment(){
-    console.log("wszystko gra");
+    // console.log("wszystko gra");
   }
   toggleForm(){
     this.setState({
@@ -28,38 +29,51 @@ export default class Toolbar extends Component {
   }
   handleOnSubmit(e){
     e.preventDefault();
-    const inputIsNotValid= this.validateInputFormat();
-    if(inputIsNotValid){
-      
+    const inputIsValid= this.validateInputFormat();
+    if(inputIsValid){
+      const foundSameEmail= this.handleFoundingSameEmail();
+      if(!foundSameEmail){
+        console.log(this.props.data.length);
+        const Newobj = new Object();
+        Newobj.name=this.state.name;
+        Newobj.email=this.state.email;
+        Newobj.id=this.props.data.length+1;
+        this.props.updateData(Newobj);
+      }
     }
-
   }
 
-
   validateInputFormat(){
-    const nameRegex = /^[a-zA-Z]{1,20}$/;
+    const nameRegex = /^[a-zA-Z_ ]{5,20}$/;
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(!emailRegex.test(this.state.email)){
-      this.setState({
-        warning:"wrong email"
-      })
-      return false;
-    } else if(!nameRegex.test(this.state.name)){
+    if(!nameRegex.test(this.state.name)){
       this.setState({
         warning:"wrong name"
       })
+      console.log("wrong name");
+      return false;
+    } else if(!emailRegex.test(this.state.email)){
+      this.setState({
+        warning:"wrong email"
+      })
+      console.log("wrong email");
       return false;
     } else {
       this.setState({
         warning:""
       })
+      console.log("email nad name format are ok");
       return true;
     }
   }
 
+  handleFoundingSameEmail(){
+    return _.find(this.props.data,el=>el.email===this.state.email);
+  }
+
 
   render(){
-    console.log(this.state.showForm);
+    // console.log(this.state.showForm);
     if(this.state.showForm){
       return (
         <form onSubmit={this.handleOnSubmit.bind(this)}>
@@ -80,8 +94,7 @@ export default class Toolbar extends Component {
           ></input>
           <button type="submit">submit</button>
           {this.showComment()}
-          {this.state.name}
-          {this.state.email}
+          {this.state.warning}
         </form>
       )
     }
