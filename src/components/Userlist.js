@@ -15,11 +15,6 @@ export default class Userlist extends Component {
     fetch('https://jsonplaceholder.typicode.com/users').then(resp => resp.json())
       .then(data => {
           if(data.length!==0){
-            // console.log(data);
-            // const dataObj = {...data};
-            console.log(data[0].email);
-
-            // console.log("selectedData",selectedData);
             this.setState({
               data:data
             })
@@ -36,13 +31,34 @@ updateData(newData){
   this.setState({
     data:data,
   })
+  fetch(`https://jsonplaceholder.typicode.com/users`, {
+          method : 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+            },
+          body: JSON.stringify(newData)
+      });
+}
+deleteUser(id){
+  const data= this.state.data?this.state.data:[]
+  console.log(id);
+  _.remove(data, item => item.id === id);
+  this.setState({
+    data:data,
+  })
 }
 
   render(){
     return (
       <div>
-        <Toolbar data={this.state.data} updateData={this.updateData.bind(this)}></Toolbar>
-        <Table data={this.state.data}></Table>
+        <Toolbar
+          data={this.state.data}
+          updateData={this.updateData.bind(this)}
+        ></Toolbar>
+        <Table
+          data={this.state.data}
+          deleteUser={this.deleteUser.bind(this)}
+        ></Table>
       </div>
     )
   }

@@ -7,20 +7,18 @@ export default class TableItem extends Component {
     super(props);
   }
 
-    renderItems() {
-        // const props = _.omit(this.props, 'todos');
-        //
-        // return _.map(this.props.todos, (todo, index) => <TodosListItem key={index} {...todo} {...props} />);
+    deleteUser(id){
+      this.props.deleteUser(id);
     }
 
     render() {
-      // console.log(this.props.name);
+      const {id,index,name,email} = this.props;
         return (
             <tr>
-              <th>{this.props.id}</th>
-              <th>{this.props.name}</th>
-              <th>{this.props.email}</th>
-              <th>X</th>
+              <th>{index+1}</th>
+              <th>{name}</th>
+              <th>{email}</th>
+              <th onClick={this.deleteUser.bind(this,id)}>X</th>
             </tr>
         );
     }

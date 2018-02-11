@@ -33,12 +33,9 @@ export default class Toolbar extends Component {
     if(inputIsValid){
       const foundSameEmail= this.handleFoundingSameEmail();
       if(!foundSameEmail){
-        console.log(this.props.data.length);
-        const Newobj = new Object();
-        Newobj.name=this.state.name;
-        Newobj.email=this.state.email;
-        Newobj.id=this.props.data.length+1;
-        this.props.updateData(Newobj);
+        this.updatingData();
+      } else{
+        this.setState({warning:"email already exists"})
       }
     }
   }
@@ -69,6 +66,13 @@ export default class Toolbar extends Component {
 
   handleFoundingSameEmail(){
     return _.find(this.props.data,el=>el.email===this.state.email);
+  }
+
+  updatingData(){
+    const randomId = Math.random().toString(16).substring(2);
+    const Newobj = {id:`${randomId}`,name:`${this.state.name}`, email:`${this.state.email}`};
+    this.props.updateData(Newobj);
+    this.setState({name:"",email:"" })
   }
 
 
