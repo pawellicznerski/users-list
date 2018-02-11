@@ -15,21 +15,23 @@ export default class Table extends Component {
   deleteUser(id){
     this.props.deleteUser(id);
   }
-    renderItems() {
-            // console.log(this.props.data);
-      // const selectedData=_.pick(this.props.data, ['id', 'name','email']);
-      // console.log("selectedData",selectedData);
-        return _.map(this.props.data, (item, index) => <TableItem key={index} {...item} index={index} deleteUser={this.deleteUser.bind(this)}/>);
-    }
+  renderItems() {
+      return _.map(this.props.data, (item, index) => <TableItem key={index} {...item} index={index} deleteUser={this.deleteUser.bind(this)}/>);
+  }
+  sortTable(itemId){
+    this.props.sortTable(itemId)
+  }
 
-    render() {
-        return (
-            <table>
-                <TableHeader></TableHeader>
-                <tbody>
-                    {this.renderItems()}
-                </tbody>
-            </table>
-        );
-    }
+  render() {
+      return (
+          <table>
+              <TableHeader
+                sortTable={this.sortTable.bind(this)}
+              />
+              <tbody>
+                  {this.renderItems()}
+              </tbody>
+          </table>
+      );
+  }
 }

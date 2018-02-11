@@ -9,6 +9,8 @@ export default class Userlist extends Component {
     super(props);
     this.state={
       data:'',
+      sortby:'',
+      descending:false,
     }
   }
   componentDidMount(){
@@ -47,6 +49,24 @@ deleteUser(id){
     data:data,
   })
 }
+sortTable(itemId){
+  let data = Array.from(this.state.data);
+  console.log(itemId);
+  const descending = this.state.sortby === itemId && !this.state.descending;
+  data.sort((a,b)=>{
+    return (
+      descending
+      ?((a.name>b.name)? 1:-1)
+      :((a.name<b.name)? 1:-1)
+    )}
+    )
+  this.setState({
+    data:data,
+    sortby:itemId,
+    descending:descending
+  })
+  console.log(this.state.descending);
+}
 
   render(){
     const noUsersInfo = <span>No users</span>;
@@ -59,6 +79,7 @@ deleteUser(id){
         <Table
           data={this.state.data}
           deleteUser={this.deleteUser.bind(this)}
+          sortTable={this.sortTable.bind(this)}
         ></Table>
       {this.state.data.length?'':noUsersInfo}
       </div>
