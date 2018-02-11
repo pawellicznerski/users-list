@@ -8,7 +8,7 @@ export default class Userlist extends Component {
   constructor(props){
     super(props);
     this.state={
-      data:''
+      data:'',
     }
   }
   componentDidMount(){
@@ -49,6 +49,7 @@ deleteUser(id){
 }
 
   render(){
+    const noUsersInfo = <span>No users</span>;
     return (
       <div>
         <Toolbar
@@ -59,6 +60,7 @@ deleteUser(id){
           data={this.state.data}
           deleteUser={this.deleteUser.bind(this)}
         ></Table>
+      {this.state.data.length?'':noUsersInfo}
       </div>
     )
   }

@@ -12,8 +12,21 @@ export default class Toolbar extends Component {
     }
   }
   showComment(){
-    // console.log("wszystko gra");
+    const inputshaveValue= this.state.email || this.state.name;
+    if(inputshaveValue){
+      return (
+        <button onClick={this.resetInputsValues.bind(this)}>Reset fields</button>
+      )
+    }
   }
+
+  resetInputsValues(){
+      this.setState({
+        name:'',
+        email:'',
+      })
+  }
+
   toggleForm(){
     this.setState({
       showForm:true
@@ -77,7 +90,6 @@ export default class Toolbar extends Component {
 
 
   render(){
-    // console.log(this.state.showForm);
     if(this.state.showForm){
       return (
         <form onSubmit={this.handleOnSubmit.bind(this)}>
@@ -98,14 +110,12 @@ export default class Toolbar extends Component {
           ></input>
           <button type="submit">submit</button>
           {this.showComment()}
-          {this.state.warning}
         </form>
       )
     }
     return (
       <div>
         <button onClick={this.toggleForm.bind(this)}>Add user</button>
-        {this.showComment()}
       </div>
     )
   }
