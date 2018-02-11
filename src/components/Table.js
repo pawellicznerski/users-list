@@ -13,6 +13,9 @@ export default class Table extends Component {
     }
   }
     renderItems() {
+      // console.log(this.props.data);
+      // const selectedData=_.pick(this.props.data, ['id', 'name','email']);
+      // console.log("selectedData",selectedData);
         return _.map(this.props.data, (item, index) => <TableItem key={index} {...item} index={index} />);
     }
 
