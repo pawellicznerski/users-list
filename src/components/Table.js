@@ -27,6 +27,8 @@ export default class Table extends Component {
           <table>
               <TableHeader
                 sortTable={this.sortTable.bind(this)}
+                sortby={this.props.sortby}
+                descending={this.props.descending}
               />
               <tbody>
                   {this.renderItems()}

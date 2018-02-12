@@ -85,7 +85,7 @@ export default class Toolbar extends Component {
     const randomId = Math.random().toString(16).substring(2);
     const Newobj = {id:`${randomId}`,name:`${this.state.name}`, email:`${this.state.email}`};
     this.props.updateData(Newobj);
-    this.setState({name:"",email:"" })
+    this.setState({name:"",email:"",showForm:false })
   }
 
 
@@ -113,9 +113,16 @@ export default class Toolbar extends Component {
         </form>
       )
     }
+    if(this.props.data.length<10){
+      return (
+        <div>
+          <button onClick={this.toggleForm.bind(this)}>Add user</button>
+        </div>
+      )
+    }
     return (
       <div>
-        <button onClick={this.toggleForm.bind(this)}>Add user</button>
+        <button>Add user</button>
       </div>
     )
   }

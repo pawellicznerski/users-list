@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Table from './Table.js';
 import Toolbar from './Toolbar.js';
+import Header from './Header/Header.js';
 import _ from 'lodash';
 
 
@@ -51,15 +52,14 @@ deleteUser(id){
 }
 sortTable(itemId){
   let data = Array.from(this.state.data);
-  console.log(itemId);
+  console.log(data);
   const descending = this.state.sortby === itemId && !this.state.descending;
   data.sort((a,b)=>{
-    return (
-      descending
-      ?((a.name>b.name)? 1:-1)
-      :((a.name<b.name)? 1:-1)
-    )}
-    )
+    return ( descending
+      ?((a[itemId]>b[itemId])? 1:-1)
+      :((a[itemId]<b[itemId])? 1:-1)
+    )});
+
   this.setState({
     data:data,
     sortby:itemId,
@@ -80,6 +80,8 @@ sortTable(itemId){
           data={this.state.data}
           deleteUser={this.deleteUser.bind(this)}
           sortTable={this.sortTable.bind(this)}
+          sortby={this.state.sortby}
+          descending={this.state.descending}
         ></Table>
       {this.state.data.length?'':noUsersInfo}
       </div>
