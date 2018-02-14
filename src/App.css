@@ -1,28 +1,129 @@
-.App {
-  text-align: center;
-}
+.header {
+  width: 100%;
+  height: 50px;
+  background: #f5f5fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px; }
+  .header__logo {
+    height: 25px;
+    width: 120px;
+    background-image: url("./components/header/unamo2.png");
+    background-size: contain;
+    background-repeat: no-repeat; }
+  .header__link {
+    color: #21aa70;
+    font-size: 14px; }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
+.toolbar {
   height: 80px;
-}
+  background-color: white;
+  display: flex;
+  align-items: center; }
+  .toolbar__info {
+    font-size: 13px;
+    padding-left: 8px;
+    padding-top: 5px;
+    display: flex; }
+    .toolbar__info_exclamation {
+      background-image: url("./components/toolbar/exclamation.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 18px;
+      width: 18px;
+      margin: -1px 5px 0 0; }
+    .toolbar__info_tick {
+      background-image: url("./components/toolbar/tick.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 18px;
+      width: 18px;
+      margin-right: 5px; }
+  .toolbar_form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+    border: 1px solid red; }
+  .toolbar__input {
+    width: 180px;
+    height: 32px;
+    margin-left: 10px;
+    padding-left: 20px;
+    border: 2px solid #e1e1e1;
+    border-radius: 3px; }
+    .toolbar__input::placeholder {
+      color: #cdcdcd; }
+    .toolbar__input:focus {
+      border: 2px solid #21aa70;
+      outline: none; }
+  .toolbar__button {
+    width: 140px;
+    height: 37px;
+    font-size: 17px;
+    margin-left: 20px;
+    border: 1px solid #21aa70;
+    border-radius: 3px;
+    background-color: #21aa70;
+    color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer; }
+    .toolbar__button_submit {
+      justify-content: center;
+      margin-left: 10px;
+      display: inline-block; }
+    .toolbar__button:hover {
+      background-color: white;
+      color: #21aa70; }
+    .toolbar__button_disabled {
+      background-color: white;
+      color: #21aa70;
+      cursor: auto; }
+    .toolbar__button:hover .toolbar__button_plus {
+      color: white;
+      background-color: #21aa70; }
+    .toolbar__button:focus {
+      outline: none; }
+    .toolbar__button_plus {
+      height: 20px;
+      width: 20px;
+      border: 1px solid #21aa70;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 10px;
+      font-size: 25px;
+      margin: 0 10px 0 10px;
+      color: #21aa70;
+      background-color: white; }
+      .toolbar__button_plus_disabled {
+        color: white;
+        background-color: #21aa70; }
+  .toolbar__button-clear {
+    margin-left: 10px;
+    border: 0 solid green;
+    background-color: white;
+    outline: none;
+    color: #fa2114;
+    cursor: pointer;
+    font-size: 13px; }
+    .toolbar__button-clear:hover {
+      color: #fa9c2d; }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
+.userlist {
+  width: 800px;
+  margin-top: 40px;
+  background-color: yellow; }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background: #f5f5fa; }

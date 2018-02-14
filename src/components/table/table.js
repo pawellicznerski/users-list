@@ -1,8 +1,8 @@
 
 import _ from 'lodash';
 import React, {Component} from 'react';
-import TableHeader from './Table_header.js';
-import TableItem from './Table_item.js';
+import TableHeader from './table_header.js';
+import TableItem from './table_item.js';
 
 export default class Table extends Component {
   constructor(props){

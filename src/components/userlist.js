@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import Table from './Table.js';
-import Toolbar from './Toolbar.js';
-import Header from './Header/Header.js';
+import Table from './table/table.js';
+import Toolbar from './toolbar/toolbar.js';
+import Header from './header/header.js';
 import _ from 'lodash';
 
 
@@ -12,6 +12,7 @@ export default class Userlist extends Component {
       data:'',
       sortby:'',
       descending:false,
+      warning:''
     }
   }
   componentDidMount(){
@@ -31,9 +32,7 @@ export default class Userlist extends Component {
 updateData(newData){
   const data= this.state.data?this.state.data:[];
   data.push(newData);
-  this.setState({
-    data:data,
-  })
+  this.setState({data:data,warning:"" })
   fetch(`https://jsonplaceholder.typicode.com/users`, {
           method : 'POST',
           headers: {
@@ -42,14 +41,17 @@ updateData(newData){
           body: JSON.stringify(newData)
       });
 }
+
 deleteUser(id){
   const data= this.state.data?this.state.data:[]
   console.log(id);
   _.remove(data, item => item.id === id);
-  this.setState({
-    data:data,
-  })
+  this.setState({data:data,warning:[false,"You have successfully removed a user"]})
+  fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+          method : 'DELETE',
+      });
 }
+
 sortTable(itemId){
   let data = Array.from(this.state.data);
   console.log(data);
@@ -71,9 +73,11 @@ sortTable(itemId){
   render(){
     const noUsersInfo = <span>No users</span>;
     return (
-      <div>
+      <div className="userlist">
+        <Header/>
         <Toolbar
           data={this.state.data}
+          warning={this.state.warning}
           updateData={this.updateData.bind(this)}
         ></Toolbar>
         <Table
@@ -83,7 +87,7 @@ sortTable(itemId){
           sortby={this.state.sortby}
           descending={this.state.descending}
         ></Table>
-      {this.state.data.length?'':noUsersInfo}
+        {this.state.data.length?'':noUsersInfo}
       </div>
     )
   }
