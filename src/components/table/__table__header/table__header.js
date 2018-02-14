@@ -10,29 +10,31 @@ export default class TableHeader extends Component {
 
   renderHeaderText(value){
     const {sortby,descending}=this.props;
-    // let title = "User";
-    const text = (sortby && sortby===value)
-    ?value += descending?"\u2191":"\u2193"
-    :value;
+    const arrow = !descending
+      ?<div className="table-header__el__img table-header__el__img_down" />
+      :<div className="table-header__el__img table-header__el__img_up" />;
+  const text = (sortby && sortby===value)?arrow:null;
     return text;
   }
 
     render() {
-
         return (
             <thead>
-              <tr>
+              <tr
+                className="table-header">
                 <th
-                >LP</th>
+                  className="table-header__el circle">LP</th>
                 <th
+                  className="table-header__el"
                   onClick={this.sortTable.bind(this,"name")}>
-                  {this.renderHeaderText("name")}
+                  {"name"}{this.renderHeaderText("name")}
                 </th>
                 <th
+                  className="table-header__el"
                   onClick={this.sortTable.bind(this,"email")}>
-                  {this.renderHeaderText("email")}
+                  {"email"}{this.renderHeaderText("email")}
                 </th>
-                <th></th>
+                <th  className="table-header__el"></th>
               </tr>
             </thead>
         );
