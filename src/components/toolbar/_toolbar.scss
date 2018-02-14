@@ -9,7 +9,7 @@
     padding-top: 5px;
     display: flex;
     &_exclamation{
-      background-image: url("./components/toolbar/exclamation.png");
+      background-image: url("./components/toolbar/icons/exclamation.png");
       background-size: contain;
       background-repeat: no-repeat;
       height: 18px;
@@ -17,7 +17,7 @@
       margin: -1px 5px 0 0;
     }
     &_tick{
-      background-image: url("./components/toolbar/tick.png");
+      background-image: url("./components/toolbar/icons/tick.png");
       background-size: contain;
       background-repeat: no-repeat;
       height: 18px;
@@ -39,6 +39,7 @@
     padding-left: 20px;
     border: 2px solid rgba(225, 225, 225, 1);
     border-radius: 3px;
+    box-shadow: 0 0 0 30px white inset;
     &::placeholder{
       color:rgba(205, 205, 205, 1);
     }
@@ -52,6 +53,7 @@
     width: 140px;
     height: 37px;
     font-size: 17px;
+    font-weight: bold;
     margin-left: 20px;
     border:1px solid rgba(33, 170, 112, 1);
     border-radius: 3px;
@@ -70,13 +72,14 @@
       color:  rgba(33, 170, 112, 1);
     }
     &_disabled{
-      background-color:  rgba(255, 255, 255, 1);
       color:  rgba(33, 170, 112, 1);
+      background-color:  rgba(255, 255, 255, 1);
       cursor: auto;
     }
     &:hover .toolbar__button_plus{
-      color:  rgba(255, 255, 255, 1);
-      background-color: rgba(33, 170, 112, 1);
+      background-image: url("./components/toolbar/icons/green.png");
+      background-size: contain;
+      background-repeat: no-repeat;
     }
     &:focus{
       outline: none;
@@ -84,19 +87,14 @@
     &_plus{
       height: 20px;
       width:20px;
-      border: 1px solid rgba(33, 170, 112, 1);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      line-height: 10px;
-      font-size: 25px;
-      margin:0 10px 0 10px;
-      color: rgba(33, 170, 112, 1);
-      background-color:  rgba(255, 255, 255, 1);
+      margin:0 9px;
+      background-image: url("./components/toolbar/icons/white.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      color:   rgba(33, 170, 112, 1);
       &_disabled{
-          color:  rgba(255, 255, 255, 1);
-          background-color: rgba(33, 170, 112, 1);
+        background-image: url("./components/toolbar/icons/green.png");
+        background-color:  rgba(255, 255, 255, 1);
       }
     }
   }

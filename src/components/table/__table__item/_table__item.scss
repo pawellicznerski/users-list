@@ -2,13 +2,16 @@
   margin-top: 10px;
   font-size: 13px;
   color: rgba(150, 150, 150, 1);
+  &:hover{
+    background-color: rgba(243, 243, 243, 1);
+  }
   &__el{
     height: 40px;
     text-align: left;
     &_cross-icon{
       background-image: url("./components/table/__table__item/cross.png");
-      height: 12px;
-      width:12px;
+      height: 13px;
+      width:13px;
       background-repeat: no-repeat;
       background-size: contain;
       cursor: pointer;
