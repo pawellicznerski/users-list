@@ -23,7 +23,7 @@ export default class Userlist extends Component {
               data:data
             })
           } else if (data.length===0){
-            console.log("nie ma danych");
+            console.log("Failed to download data from server");
           }
         }
       );//end of then
@@ -44,7 +44,6 @@ updateData(newData){
 
 deleteUser(id){
   const data= this.state.data?this.state.data:[]
-  console.log(id);
   _.remove(data, item => item.id === id);
   this.setState({data:data,warning:[false,"You have successfully removed a user"]})
   fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
@@ -54,7 +53,6 @@ deleteUser(id){
 
 sortTable(itemId){
   let data = Array.from(this.state.data);
-  console.log(data);
   const descending = this.state.sortby === itemId && !this.state.descending;
   data.sort((a,b)=>{
     return ( descending
@@ -67,7 +65,6 @@ sortTable(itemId){
     sortby:itemId,
     descending:descending
   })
-  console.log(this.state.descending);
 }
 
   render(){

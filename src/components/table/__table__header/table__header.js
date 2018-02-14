@@ -1,11 +1,8 @@
-
-import _ from 'lodash';
 import React, {Component} from 'react';
 
 export default class TableHeader extends Component {
   sortTable(itemId){
     this.props.sortTable(itemId)
-    // console.log(this);
   }
 
   renderHeaderText(value){
@@ -13,8 +10,8 @@ export default class TableHeader extends Component {
     const arrow = !descending
       ?<div className="table-header__el__img table-header__el__img_down" />
       :<div className="table-header__el__img table-header__el__img_up" />;
-  const text = (sortby && sortby===value)?arrow:null;
-    return text;
+    const properArrow = (sortby && sortby===value)?arrow:null;
+    return properArrow;
   }
 
     render() {

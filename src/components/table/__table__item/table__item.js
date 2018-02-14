@@ -1,12 +1,6 @@
-
-import _ from 'lodash';
 import React, {Component} from 'react';
 
 export default class TableItem extends Component {
-  constructor(props){
-    super(props);
-  }
-
     deleteUser(id){
       this.props.deleteUser(id);
     }
